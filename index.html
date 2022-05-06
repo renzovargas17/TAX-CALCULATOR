@@ -12,36 +12,48 @@
         <p>TAX-CALCULATOR</p>
         <nav>
             <ul>
-                <li><a href="">Income Taxes</a></li>
-                <li><a href="">Social Security</a></li>
-                <li><a href="">VAT</a></li>
+                <li><a href="">English</a></li>
+                <li><a href="">Hebrew</a></li>
+                <li><a href="">Spanish</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h1>Welcome to your tax calculator!</h1>
         <p>Here you can find out what is your income after taxes.</p>
-        <section>
+        <section class="income-tax-container">
+           
            <form action="">
-               <label for="">Type your income </label>
-               <input type="number" id="">
-               <button>Calculate</button>
+            <div>
+                <label for="timeframeOption">Annual or Monthly Tax?</label>
+                <input list="filter" id="timeframeOption">
+                <datalist id="filter">
+                    <option value="Annual">Annual</option>
+                    <option value="Monthly">Monthly</option>
+                </datalist>
+            </div>
+               <label for="inputIncomeForTaxes">Type your income </label>
+               <input type="number" id="inputIncomeForTaxes">
+               <button type="button" id="taxButton">Calculate yout taxes</button>
+               <p id="resultTax"></p>
            </form>
         </section>
-        <section>
+        <section class="social-security-container">
             <form action="">
-                <label for="">Type your income</label>
-                <input type="number" id="">
-                <button>Calculate</button>
+                <label for="inputIncomeForSocialSecurity">Type your income</label>
+                <input type="number" id="inputIncomeForSocialSecurity">
+                <button type="button" id="socialSecurityButton">Calculate</button>
+                <p id="resultsocialSecurity"></p>
         </section>
-        <section>
+        <section class="vat-container">
             <form action="">
-                <label for="">Type your income</label>
-                <input type="number" id="">
-                <button>Calculate</button>
+                <label for="inputIncomeForVAT">Type your income</label>
+                <input type="number" id="inputIncomeForVAT">
+                <button type="button" id="vatButton">Calculate</button>
+                <p id="resultVAT"></p>
         </section>
        
     </main>
-    <script></script>
+    <script src="./page-dynamics.js"></script>
 </body>
 </html>
