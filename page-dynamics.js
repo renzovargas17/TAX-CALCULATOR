@@ -7,19 +7,19 @@ var fifthBracketRate = 0.35;
 var sixthBracketRate = 0.47;
 var seventhBracketRate = 0.5;
 
-var firstBracket_treshold = 6450; 
+var firstBracket_treshold = 6450                
 var secondBracket_treshold = 9240; 
 var thirdBracket_treshold = 14840; 
-var fourthBracket_treshold = 20620; 
-var fifthBracket_treshold = 42910; 
-var sixthBracket_treshold = 55270; 
+var fourthBracket_treshold = 20620;
+var fifthBracket_treshold = 42910;
+var sixthBracket_treshold = 55270;
 
 var firstBracket_mount = 6450;
-var secondBracket_mount = 2790;
-var thirdBracket_mount = 5600;
-var fourthBracket_mount = 5780;
-var fifthBracket_mount = 22290;
-var sixthBracket_mount = 12360;
+var secondBracket_mount =  2790;
+var thirdBracket_mount =  5600;
+var fourthBracket_mount =  5780;
+var fifthBracket_mount =  22290;
+var sixthBracket_mount =  12360;
 
 var firstBracket_taxCalc = firstBracket_mount * firstBracketRate;
 var secondBracket_taxCalc = secondBracket_mount * secondBracketRate;
@@ -42,9 +42,7 @@ function calculateTax(){
     
 
     if(incomeValue >= 0 && incomeValue <= firstBracket_mount){
-            taxValue = incomeValue * firstBracketRate;
-            
-            
+            taxValue = incomeValue * firstBracketRate;       
     }
     else if(incomeValue > firstBracket_treshold && incomeValue <= secondBracket_treshold){
             var bracketDifference = incomeValue - firstBracket_treshold;
