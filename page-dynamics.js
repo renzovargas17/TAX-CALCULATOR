@@ -19,7 +19,7 @@ var secondBracket_mount = 2790;
 var thirdBracket_mount = 5600;
 var fourthBracket_mount = 5780;
 var fifthBracket_mount = 22290;
-var sixthBracket_mount = 12360
+var sixthBracket_mount = 12360;
 
 var firstBracket_taxCalc = firstBracket_mount * firstBracketRate;
 var secondBracket_taxCalc = secondBracket_mount * secondBracketRate;
@@ -29,117 +29,71 @@ var fifthBracket_taxCalc = fifthBracket_mount * fifthBracketRate;
 var sixthBracket_taxCalc = sixthBracket_mount * sixthBracketRate;
 
 
+
+var taxValue;
+var resultText = document.getElementById("resultTax");
+
+
 var calculateButttonTaX = document.getElementById("taxButton");
 calculateButttonTaX.addEventListener("click", calculateTax);
+
 
 
 //FUNCTION FOR THE TAX CALCULATOR
 function calculateTax(){
     var inputIncome = document.getElementById("inputIncomeForTaxes");
     var incomeValue = inputIncome.value;
+    
+
     if(incomeValue >= 0 && incomeValue <= firstBracket_mount){
-        firstBracketTax();
+            taxValue = incomeValue * firstBracketRate;
+            taxValue = (taxValue.toFixed(1));
+            
     }
     else if(incomeValue > firstBracket_treshold && incomeValue <= secondBracket_treshold){
-        secondBracketTax();
+            var bracketDifference = incomeValue - firstBracket_treshold;
+            taxValue = firstBracket_taxCalc + (bracketDifference * secondBracketRate);
+            taxValue = (taxValue.toFixed(1));
+        
     }
     else if(incomeValue > secondBracket_treshold && incomeValue <= thirdBracket_treshold){
-        thirdBracketTax();
+            var bracketDifference = incomeValue - secondBracket_treshold;
+            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + (bracketDifference * thirdBracketRate);
+            taxValue = (taxValue.toFixed(1));
     }
     else if(incomeValue > thirdBracket_treshold && incomeValue <= fourthBracket_treshold){
-        fourthBracketTax();
+            var bracketDifference = incomeValue - thirdBracket_treshold;
+            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + (bracketDifference * fourthBracketRate);
+            taxValue = (taxValue.toFixed(1));
     }
     else if(incomeValue > fourthBracket_treshold && incomeValue <= fifthBracket_treshold){
-        fifthBracketTax();
+            var bracketDifference = incomeValue - fourthBracket_treshold;
+            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + (bracketDifference * fifthBracketRate);
+            taxValue = (taxValue.toFixed(1));
     }
     else if(incomeValue > fifthBracket_treshold && incomeValue <= sixthBracket_treshold){
-        sixthBracketTax();
+            var bracketDifference = incomeValue - fifthBracket_treshold;
+            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + (bracketDifference * sixthBracketRate);
+            taxValue = (taxValue.toFixed(1));
     }
     else if(incomeValue > sixthBracket_treshold){
-        seventhBracketTax();
+            var bracketDifference = incomeValue - sixthBracket_treshold;
+            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + sixthBracket_taxCalc + (bracketDifference * seventhBracketRate);
+            taxValue = (taxValue.toFixed(1));
     }
     else{}
-}
-
-
-
-
-
-//FUNCTION FOR FIRST TAX BRACKET
-function firstBracketTax(incomeValue){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
-    var incomeValue = inputIncome.value;
-    taxValue = incomeValue * firstBracketRate;
-    var resultText = document.getElementById("resultTax");
-    taxValue = (taxValue.toFixed(1));
     resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
 }
 
-//FUNCTION FOR SECOND TAX BRACKET
-function secondBracketTax(incomeValue){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
-    var incomeValue = inputIncome.value;
-    var bracketDifference = incomeValue - firstBracket_treshold;
-    taxValue = firstBracket_taxCalc + (bracketDifference * secondBracketRate);
-    var resultText = document.getElementById("resultTax");
-    taxValue = (taxValue.toFixed(1));
-    resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
-}
 
-//FUNCTION FOR THIRD TAX BRACKET
-function thirdBracketTax(incomeValue){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
-    var incomeValue = inputIncome.value;
-    var bracketDifference = incomeValue - secondBracket_treshold;
-    taxValue = firstBracket_taxCalc + secondBracket_taxCalc + (bracketDifference * thirdBracketRate);
-    var resultText = document.getElementById("resultTax");
-    taxValue = (taxValue.toFixed(1));
-    resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
-}
 
-//FUNCTION FOR FOURTH TAX BRACKET
-function fourthBracketTax(incomeValue){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
-    var incomeValue = inputIncome.value;
-    var bracketDifference = incomeValue - thirdBracket_treshold;
-    taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + (bracketDifference * fourthBracketRate);
-    var resultText = document.getElementById("resultTax");
-    taxValue = (taxValue.toFixed(1));
-    resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
-}
 
-//FUNCTION FOR FIFTH TAX BRACKET 
-function fifthBracketTax(incomeValue){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
-    var incomeValue = inputIncome.value;
-    var bracketDifference = incomeValue - fourthBracket_treshold;
-    taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + (bracketDifference * fifthBracketRate);
-    var resultText = document.getElementById("resultTax");
-    taxValue = (taxValue.toFixed(1));
-    resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
-}
 
-//FUNCTION FOR SIXTH TAX BRACKET
-function sixthBracketTax(incomeValue){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
-    var incomeValue = inputIncome.value;
-    var bracketDifference = incomeValue - fifthBracket_treshold;
-    taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + (bracketDifference * sixthBracketRate);
-    var resultText = document.getElementById("resultTax");
-    taxValue = (taxValue.toFixed(1));
-    resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
-}
 
-//FUNCTION FOR SEVENTH TAX BRACKET
-function seventhBracketTax(incomeValue){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
-    var incomeValue = inputIncome.value;
-    var bracketDifference = incomeValue - sixthBracket_treshold;
-    taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + sixthBracket_taxCalc + (bracketDifference * seventhBracketRate);
-    var resultText = document.getElementById("resultTax");
-    taxValue = (taxValue.toFixed(1));
-    resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
-}
+
+
+
+
 
 
 
