@@ -41,7 +41,10 @@ function calculateTax(){
     var incomeValue = inputIncome.value;
     
 
-    if(incomeValue >= 0 && incomeValue <= firstBracket_mount){
+    if(incomeValue == "" ){
+        alert("Value must be filled");            
+    }
+    else if(incomeValue >= 0 && incomeValue <= firstBracket_mount){
             taxValue = incomeValue * firstBracketRate;       
     }
     else if(incomeValue > firstBracket_treshold && incomeValue <= secondBracket_treshold){
@@ -68,7 +71,10 @@ function calculateTax(){
             var bracketDifference = incomeValue - sixthBracket_treshold;
             taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + sixthBracket_taxCalc + (bracketDifference * seventhBracketRate);
     }
-    else{}
+    else{
+            alert("Invalid Value");
+    }
+   
     taxValue = (taxValue.toFixed(1));
     resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
 }
