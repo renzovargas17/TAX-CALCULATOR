@@ -29,16 +29,17 @@ var fifthBracket_taxCalc = fifthBracket_mount * fifthBracketRate;
 var sixthBracket_taxCalc = sixthBracket_mount * sixthBracketRate;
 var taxValue;
 
-var resultText = document.getElementById("resultTax");
+var resultTaxText = document.getElementById("resultTax");
+var resultSocial_Security = document.getElementById("resultSocialSecutiry");
 
 
 
 var calculateButtonTaX = document.getElementById("taxButton");
 var inputIncome = document.getElementById("inputIncomeForTaxes");
 
-
-calculateButtonTaX.addEventListener("click", calculateTax);
 inputIncome.addEventListener("keyup", clickByEnter);
+calculateButtonTaX.addEventListener("click", calculateTax);
+
 
 
 
@@ -49,8 +50,6 @@ function clickByEnter(e){
                 calculateButtonTaX.click();
         }
 }
-
-
 
 //FUNCTION FOR THE TAX CALCULATOR
 function calculateTax(){
@@ -92,5 +91,5 @@ function calculateTax(){
         }
                    
                 taxValue = (taxValue.toFixed(1));
-                resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
+                resultTaxText.innerText = "Your taxes to pay are " + taxValue + " ILS";    
 }
