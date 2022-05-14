@@ -27,54 +27,70 @@ var thirdBracket_taxcCalc = thirdBracket_mount * thirdBracketRate;
 var fourthBracket_taxCalc = fourthBracket_mount * fourthBracketRate;
 var fifthBracket_taxCalc = fifthBracket_mount * fifthBracketRate;
 var sixthBracket_taxCalc = sixthBracket_mount * sixthBracketRate;
-
 var taxValue;
+
 var resultText = document.getElementById("resultTax");
 
-var calculateButttonTaX = document.getElementById("taxButton");
-calculateButttonTaX.addEventListener("click", calculateTax);
+
+
+var calculateButtonTaX = document.getElementById("taxButton");
+var inputIncome = document.getElementById("inputIncomeForTaxes");
+
+
+calculateButtonTaX.addEventListener("click", calculateTax);
+inputIncome.addEventListener("keyup", clickByEnter);
+
+
+
+//ENTER ON CLICK FUNCTION
+function clickByEnter(e){
+        e.preventDefault();
+        if(e.keyCode == 13){
+                calculateButtonTaX.click();
+        }
+}
+
 
 
 //FUNCTION FOR THE TAX CALCULATOR
 function calculateTax(){
-    var inputIncome = document.getElementById("inputIncomeForTaxes");
     var incomeValue = inputIncome.value;
     
-
-    if(incomeValue == "" ){
-        alert("Value must be filled");            
-    }
-    else if(incomeValue >= 0 && incomeValue <= firstBracket_mount){
-            taxValue = incomeValue * firstBracketRate;       
-    }
-    else if(incomeValue > firstBracket_treshold && incomeValue <= secondBracket_treshold){
-            var bracketDifference = incomeValue - firstBracket_treshold;
-            taxValue = firstBracket_taxCalc + (bracketDifference * secondBracketRate);
-    }
-    else if(incomeValue > secondBracket_treshold && incomeValue <= thirdBracket_treshold){
-            var bracketDifference = incomeValue - secondBracket_treshold;
-            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + (bracketDifference * thirdBracketRate);
-    }
-    else if(incomeValue > thirdBracket_treshold && incomeValue <= fourthBracket_treshold){
-            var bracketDifference = incomeValue - thirdBracket_treshold;
-            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + (bracketDifference * fourthBracketRate);
-    }
-    else if(incomeValue > fourthBracket_treshold && incomeValue <= fifthBracket_treshold){
-            var bracketDifference = incomeValue - fourthBracket_treshold;
-            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + (bracketDifference * fifthBracketRate);
-    }
-    else if(incomeValue > fifthBracket_treshold && incomeValue <= sixthBracket_treshold){
-            var bracketDifference = incomeValue - fifthBracket_treshold;
-            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + (bracketDifference * sixthBracketRate);
-    }
-    else if(incomeValue > sixthBracket_treshold){
-            var bracketDifference = incomeValue - sixthBracket_treshold;
-            taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + sixthBracket_taxCalc + (bracketDifference * seventhBracketRate);
-    }
-    else{
-            alert("Invalid Value");
-    }
-   
-    taxValue = (taxValue.toFixed(1));
-    resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
+        switch(true){
+                case incomeValue == "":
+                        alert("Value must be filled");            
+                        break;
+                case incomeValue >= 0 && incomeValue <= firstBracket_mount:
+                        taxValue = incomeValue * firstBracketRate;       
+                        break;
+                case incomeValue > firstBracket_treshold && incomeValue <= secondBracket_treshold:
+                         var bracketDifference = incomeValue - firstBracket_treshold;
+                        taxValue = firstBracket_taxCalc + (bracketDifference * secondBracketRate);
+                        break;
+                case incomeValue > secondBracket_treshold && incomeValue <= thirdBracket_treshold:
+                         var bracketDifference = incomeValue - secondBracket_treshold;
+                         taxValue = firstBracket_taxCalc + secondBracket_taxCalc + (bracketDifference * thirdBracketRate);
+                        break;
+                case incomeValue > thirdBracket_treshold && incomeValue <= fourthBracket_treshold:
+                         var bracketDifference = incomeValue - thirdBracket_treshold;
+                         taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + (bracketDifference * fourthBracketRate);
+                        break;
+                case incomeValue > fourthBracket_treshold && incomeValue <= fifthBracket_treshold:
+                         var bracketDifference = incomeValue - fourthBracket_treshold;
+                        taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + (bracketDifference * fifthBracketRate);
+                        break;
+                case incomeValue > fifthBracket_treshold && incomeValue <= sixthBracket_treshold:
+                         var bracketDifference = incomeValue - fifthBracket_treshold;
+                         taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + (bracketDifference * sixthBracketRate);
+                        break;
+                case incomeValue > sixthBracket_treshold:
+                         var bracketDifference = incomeValue - sixthBracket_treshold;
+                         taxValue = firstBracket_taxCalc + secondBracket_taxCalc + thirdBracket_taxcCalc + fourthBracket_taxCalc + fifthBracket_taxCalc + sixthBracket_taxCalc + (bracketDifference * seventhBracketRate);
+                        break;
+                default:
+                            alert("Invalid Value");
+        }
+                   
+                taxValue = (taxValue.toFixed(1));
+                resultText.innerText = "Your taxes to pay are " + taxValue + " ILS";
 }

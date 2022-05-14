@@ -25,15 +25,14 @@
            
            <form action="">
             <div>
-                <label for="timeframeOption">Annual or Monthly Tax?</label>
-                <input list="filter" id="timeframeOption">
-                <datalist id="filter">
+                <label for="period">Annual or Monthly Tax?</label>
+                <select id="period">
                     <option value="Annual">Annual</option>
                     <option value="Monthly">Monthly</option>
-                </datalist>
+                </select>
             </div>
                <label for="inputIncomeForTaxes">Type your income </label>
-               <input type="number" id="inputIncomeForTaxes">
+               <input type="" id="inputIncomeForTaxes">
                <button type="button" id="taxButton">Calculate yout taxes</button>
                <p id="resultTax"></p>
            </form>
