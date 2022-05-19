@@ -21,12 +21,12 @@ var fourthBracket_mount =  [5780, 69360];
 var fifthBracket_mount =  [22290, 267480];
 var sixthBracket_mount =  [12360, 148320];
 
-var firstBracket = firstBracket_mount * firstBracketRate;
-var secondBracket = secondBracket_mount * secondBracketRate;
-var thirdBracket = thirdBracket_mount * thirdBracketRate;
-var fourthBracket = fourthBracket_mount * fourthBracketRate;
-var fifthBracket = fifthBracket_mount * fifthBracketRate;
-var sixthBracket = sixthBracket_mount * sixthBracketRate;
+var firstBracket;
+var secondBracket;
+var thirdBracket;
+var fourthBracket;
+var fifthBracket;
+var sixthBracket;
 var taxValue;
 
 var resultTaxText = document.getElementById("resultTax");
@@ -37,14 +37,67 @@ var resultSocial_Security = document.getElementById("resultSocialSecutiry");
 var calculateButtonTaX = document.getElementById("taxButton");
 var inputIncome = document.getElementById("inputIncomeForTaxes");
 
-inputIncome.addEventListener("keyup", clickByEnter);
-calculateButtonTaX.addEventListener("click", calculateTax);
 
+//PERIOD SELECTION FUNCTION        
+var periodSelect = document.getElementById("period");
+periodSelect.addEventListener("change", changeValues);
 
+function changeValues(){    
+        if(periodSelect.value == "choose"){
+                console.log("choose a period first");
+                  
+        }
+        else if(periodSelect.value == "monthly"){
+                firstBracket_mount = firstBracket_mount[0];
+                secondBracket_mount = secondBracket_mount[0];
+                thirdBracket_mount = thirdBracket_mount[0];
+                fourthBracket_mount = fourthBracket_mount[0];
+                fifthBracket_mount = fifthBracket_mount[0];
+                sixthBracket_mount = sixthBracket_mount[0];
 
+                firstBracket_treshold = firstBracket_treshold[0];
+                secondBracket_treshold = secondBracket_treshold[0];
+                thirdBracket_treshold = thirdBracket_treshold[0];
+                fourthBracket_treshold =  fourthBracket_treshold[0];
+                fifthBracket_treshold = fifthBracket_treshold[0];
+                sixthBracket_treshold = sixthBracket_treshold[0];
+                
+                
+        }
+        else if(periodSelect.value == "annual"){
+                firstBracket_mount = firstBracket_mount[1];
+                secondBracket_mount = secondBracket_mount[1];
+                thirdBracket_mount = thirdBracket_mount[1];
+                fourthBracket_mount = fourthBracket_mount[1];
+                fifthBracket_mount = fifthBracket_mount[1];
+                sixthBracket_mount = sixthBracket_mount[1];
+
+                firstBracket_treshold = firstBracket_treshold[1];
+                secondBracket_treshold = secondBracket_treshold[1];
+                thirdBracket_treshold = thirdBracket_treshold[1];
+                fourthBracket_treshold = fourthBracket_treshold[1];
+                fifthBracket_treshold = fifthBracket_treshold[1];
+                sixthBracket_treshold = sixthBracket_treshold[1];
+                
+        }
+        
+        firstBracket = firstBracket_mount * firstBracketRate;
+        secondBracket = secondBracket_mount * secondBracketRate;
+        thirdBracket = thirdBracket_mount * thirdBracketRate;
+        fourthBracket = fourthBracket_mount * fourthBracketRate;
+        fifthBracket = fifthBracket_mount * fifthBracketRate;
+        sixthBracket = sixthBracket_mount * sixthBracketRate;
+
+        console.log(periodSelect.value);
+        
+}
+                
 
 
 //ENTER ON CLICK FUNCTION
+inputIncome.addEventListener("keyup", clickByEnter);
+calculateButtonTaX.addEventListener("click", calculateTax);
+
 function clickByEnter(e){
         e.preventDefault();
         if(e.keyCode == 13){
@@ -55,7 +108,7 @@ function clickByEnter(e){
 //FUNCTION FOR THE TAX CALCULATOR
 function calculateTax(){
         var incomeValue = inputIncome.value;
-            
+          
         switch(true){
                 case incomeValue == "":
                         alert("Value must be filled");            
@@ -95,44 +148,6 @@ function calculateTax(){
                 resultTaxText.innerText = "Your taxes to pay are " + taxValue + " ILS";    
 }
 
-        
-        var periodSelect = document.getElementById("period").value;
-        periodSelect.addEventListener("change", changeValues);
-        function changeValues(e){
-                if(periodSelect == "monthly"){
-                        
-                        firstBracket_mount = firstBracket_mount[0];
-                        secondBracket_mount = secondBracket_mount[0];
-                        thirdBracket_mount = thirdBracket_mount[0];
-                        fourthBracket_mount = fourthBracket_mount[0];
-                        fifthBracket_mount = fifthBracket_mount[0];
-                        sixthBracket_mount = sixthBracket_mount[0];
 
-                        firstBracket_treshold = firstBracket_treshold[0];
-                        secondBracket_treshold = secondBracket_treshold[0];
-                        thirdBracket_treshold = thirdBracket_treshold[0];
-                        fourthBracket_treshold =  fourthBracket_treshold[0];
-                        fifthBracket_treshold = fifthBracket_treshold[0];
-                        sixthBracket_treshold = sixthBracket_treshold[0];
-                        console.log("elegiste mensual");
-                        
-                }
-                else if(periodSelect == "annual"){
-                        
-                        firstBracket_mount = firstBracket_mount[1];
-                        secondBracket_mount = secondBracket_mount[1];
-                        thirdBracket_mount = thirdBracket_mount[1];
-                        fourthBracket_mount = fourthBracket_mount[1];
-                        fifthBracket_mount = fifthBracket_mount[1];
-                        sixthBracket_mount = sixthBracket_mount[1];
 
-                        firstBracket_treshold = firstBracket_treshold[1];
-                        secondBracket_treshold = secondBracket_treshold[1];
-                        thirdBracket_treshold = thirdBracket_treshold[1];
-                        fourthBracket_treshold = fourthBracket_treshold[1];
-                        fifthBracket_treshold = fifthBracket_treshold[1];
-                        sixthBracket_treshold = sixthBracket_treshold[1];
-                        console.log("elegiste anual");
-                }
                 
-        }
