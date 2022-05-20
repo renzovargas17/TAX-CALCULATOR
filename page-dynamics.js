@@ -41,13 +41,8 @@ var inputIncome = document.getElementById("inputIncomeForTaxes");
 //PERIOD SELECTION FUNCTION        
 var periodSelect = document.getElementById("period");
 periodSelect.addEventListener("change", changeValues);
-
 function changeValues(){    
-        if(periodSelect.value == "choose"){
-                console.log("choose a period first");
-                  
-        }
-        else if(periodSelect.value == "monthly"){
+        if(periodSelect.value == "monthly"){
                 firstBracket_mount = firstBracket_mount[0];
                 secondBracket_mount = secondBracket_mount[0];
                 thirdBracket_mount = thirdBracket_mount[0];
@@ -63,7 +58,7 @@ function changeValues(){
                 sixthBracket_treshold = sixthBracket_treshold[0];
                 
                 
-        }
+        }       
         else if(periodSelect.value == "annual"){
                 firstBracket_mount = firstBracket_mount[1];
                 secondBracket_mount = secondBracket_mount[1];
@@ -87,7 +82,7 @@ function changeValues(){
         fourthBracket = fourthBracket_mount * fourthBracketRate;
         fifthBracket = fifthBracket_mount * fifthBracketRate;
         sixthBracket = sixthBracket_mount * sixthBracketRate;
-
+        
         console.log(periodSelect.value);
         
 }
@@ -108,7 +103,10 @@ function clickByEnter(e){
 //FUNCTION FOR THE TAX CALCULATOR
 function calculateTax(){
         var incomeValue = inputIncome.value;
-          
+        if(periodSelect.value == "choose"){
+                alert("choose aperiod first");
+                return;  
+        }
         switch(true){
                 case incomeValue == "":
                         alert("Value must be filled");            
@@ -141,11 +139,15 @@ function calculateTax(){
                          taxValue = firstBracket + secondBracket + thirdBracket + fourthBracket + fifthBracket + sixthBracket + (bracketDifference * seventhBracketRate);
                         break;
                 default:
-                            alert("Invalid Value");
+                        resultTaxText.innerText = "Invalid Value";
+                        return;
         }
                    
                 taxValue = (taxValue.toFixed(1));
-                resultTaxText.innerText = "Your taxes to pay are " + taxValue + " ILS";    
+                resultTaxText.innerText = "Your taxes to pay are " + taxValue + " ILS";
+                console.log(taxValue);
+                
+
 }
 
 

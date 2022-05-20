@@ -22,17 +22,17 @@
         <h1>Welcome to your tax calculator!</h1>    
         <p>Here you can find out what is your income after taxes.</p>
         <section class="income-tax-container">
-            <div>
+            <form onsubmit="return false">
                 <label for="period">Annual or Monthly Tax?</label>
                 <select id="period">
-                    <option value="choose" >Choose a Period</option>
+                    <option value="choose" disabled selected hidden selected="selected">Choose a Period</option>
                     <option value="annual">Annual</option>
                     <option value="monthly">Monthly</option>
                 </select>
-            </div>
                <label for="inputIncomeForTaxes">Type your income </label>
                <input type="" id="inputIncomeForTaxes">
                <button type="button" id="taxButton">Calculate yout taxes</button>
+            </form>
                <p id="resultTax"></p>
                <p id="resultSocialSecutiry"></p>
         </section>
