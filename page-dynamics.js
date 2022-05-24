@@ -1,11 +1,13 @@
 
-var firstBracketRate = 0.1;
-var secondBracketRate = 0.14;
-var thirdBracketRate = 0.2;
-var fourthBracketRate = 0.31;
-var fifthBracketRate = 0.35;
-var sixthBracketRate = 0.47;
-var seventhBracketRate = 0.5;
+
+//TAX VALUES
+var firstBracketRate;
+var secondBracketRate;
+var thirdBracketRate;
+var fourthBracketRate;
+var fifthBracketRate;
+var sixthBracketRate;
+var seventhBracketRate;
 
 var firstBracket_treshold;                
 var secondBracket_treshold;
@@ -28,6 +30,7 @@ var fourthBracket;
 var fifthBracket;
 var sixthBracket;
 var taxValue;
+var socialValue;
 
 var resultTaxText = document.getElementById("resultTax");
 var resultSocial_Security = document.getElementById("resultSocialSecutiry");
@@ -35,11 +38,38 @@ var resultSocial_Security = document.getElementById("resultSocialSecutiry");
 var calculateButtonTaX = document.getElementById("taxButton");
 var inputIncome = document.getElementById("inputIncomeForTaxes");
 
-
-//PERIOD SELECTION FUNCTION        
+inputIncome.addEventListener("keyup", clickByEnter);
+calculateButtonTaX.addEventListener("click", calculateALL);
+       
 var periodSelect = document.getElementById("period");
-periodSelect.addEventListener("change", changeValues);
-function changeValues(){    
+periodSelect.addEventListener("change", changeAllValues);
+
+function clickByEnter(e){
+        e.preventDefault();
+        if(e.keyCode == 13){
+                calculateButtonTaX.click();
+        }
+}
+
+function changeAllValues(){
+        changeValues_Taxes();
+        changeValues_SocialSecurity();
+}
+
+function calculateALL(){
+        calculateTax();
+        calculateSocial();
+}
+
+
+function changeValues_Taxes(){
+        firstBracketRate = 0.1;
+        secondBracketRate = 0.14;
+        thirdBracketRate = 0.2;
+        fourthBracketRate = 0.31;
+        fifthBracketRate = 0.35;
+        sixthBracketRate = 0.47;
+        seventhBracketRate = 0.5;    
         firstBracket_treshold = [6450, 77400];                
         secondBracket_treshold = [9240, 110880]; 
         thirdBracket_treshold = [14840, 178080]; 
@@ -54,7 +84,6 @@ function changeValues(){
         fifthBracket_mount =  [22290, 267480];
         sixthBracket_mount =  [12360, 148320];
         if(periodSelect.value == "monthly"){
-                console.log(periodSelect.value);
                 firstBracket_mount = firstBracket_mount[0];
                 secondBracket_mount = secondBracket_mount[0];
                 thirdBracket_mount = thirdBracket_mount[0];
@@ -71,7 +100,6 @@ function changeValues(){
                 
         }       
         else if(periodSelect.value == "annual"){ 
-                console.log(periodSelect.value);
                 firstBracket_mount = firstBracket_mount[1];
                 secondBracket_mount = secondBracket_mount[1];
                 thirdBracket_mount = thirdBracket_mount[1];
@@ -94,24 +122,35 @@ function changeValues(){
         fifthBracket = fifthBracket_mount * fifthBracketRate;
         sixthBracket = sixthBracket_mount * sixthBracketRate;
 }
-                
-
-
-//ENTER ON CLICK FUNCTION
-inputIncome.addEventListener("keyup", clickByEnter);
-calculateButtonTaX.addEventListener("click", calculateTax);
-
-function clickByEnter(e){
-        e.preventDefault();
-        if(e.keyCode == 13){
-                calculateButtonTaX.click();
+function changeValues_SocialSecurity(){
+        firstBracketRate = 0.0597;
+        secondBrafirstBracketRate = 0.1783;
+        firstBracket_treshold = [6331, 75972];
+        secondBracket_treshold = [45075, 540900];
+        firstBracket_mount = [6331, 75972];
+        secondBracket_mount = [38744, 464928];
+        if(periodSelect.value == "monthly"){
+                firstBracket_mount = firstBracket_mount[0];
+                secondBracket_mount = secondBracket_mount[0];
+                firstBracket_treshold = firstBracket_treshold[0];
+                secondBracket_treshold = secondBracket_treshold[0];
         }
-}
+        else if(periodSelect.value == "annual"){
+                firstBracket_mount = firstBracket_mount[1];
+                secondBracket_mount = secondBracket_mount[1];
+                firstBracket_treshold = firstBracket_treshold[1];
+                secondBracket_treshold = secondBracket_treshold[1];
+        }
+        
+        firstBracket = firstBracket_mount * firstBracketRate;
+        secondBracket = secondBracket_mount * secondBrafirstBracketRate;
+        
 
-//FUNCTION FOR THE TAX CALCULATOR
+}
 function calculateTax(){
-        console.log("click");
-        var incomeValue = inputIncome.value;
+        
+        changeValues_Taxes();
+        incomeValue = inputIncome.value;
         if(periodSelect.value == "choose"){
                 alert("choose aperiod first");
                 return;  
@@ -155,6 +194,32 @@ function calculateTax(){
                 resultTaxText.innerText = "Your taxes to pay are " + taxValue + " ILS";
                 console.log(taxValue);
 }
+function calculateSocial(){
+        changeValues_SocialSecurity();
+        incomeValue = inputIncome.value;
+        switch(true){
+                case incomeValue <= firstBracket_treshold:
+                        socialValue = incomeValue * firstBracketRate;
+                        break;
+                case incomeValue > firstBracket_treshold && incomeValue <= secondBracket_treshold:
+                        var bracketDifferenceSocial = incomeValue - firstBracket_treshold;
+                        socialValue = firstBracket + (bracketDifferenceSocial * secondBrafirstBracketRate);
+                        break;
+                case incomeValue > secondBracket_treshold:
+                        socialValue = firstBracket + secondBracket;
+                        break;
+                default:
+                        resultSocial_Security.innerText = "Invalid Value";
+                        return;
+        }
+        
+        socialValue = (socialValue.toFixed(1));
+        resultSocial_Security.innerText = "Your Social taxes to pay are " + socialValue + " ILS";
+        console.log(socialValue);
+}
+
+
+
 
 
 
