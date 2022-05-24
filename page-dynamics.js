@@ -7,19 +7,19 @@ var fifthBracketRate = 0.35;
 var sixthBracketRate = 0.47;
 var seventhBracketRate = 0.5;
 
-var firstBracket_treshold = [6450, 77400];                
-var secondBracket_treshold = [9240, 110880]; 
-var thirdBracket_treshold = [14840, 178080]; 
-var fourthBracket_treshold = [20620, 247440];
-var fifthBracket_treshold = [42910, 514920];
-var sixthBracket_treshold = [55270, 663240];
+var firstBracket_treshold;                
+var secondBracket_treshold;
+var thirdBracket_treshold; 
+var fourthBracket_treshold;
+var fifthBracket_treshold;
+var sixthBracket_treshold;
 
-var firstBracket_mount = [6450, 77400];
-var secondBracket_mount =  [2790, 33480];
-var thirdBracket_mount =  [5600, 67200];
-var fourthBracket_mount =  [5780, 69360];
-var fifthBracket_mount =  [22290, 267480];
-var sixthBracket_mount =  [12360, 148320];
+var firstBracket_mount;
+var secondBracket_mount;
+var thirdBracket_mount;
+var fourthBracket_mount;
+var fifthBracket_mount;
+var sixthBracket_mount;
 
 var firstBracket;
 var secondBracket;
@@ -32,8 +32,6 @@ var taxValue;
 var resultTaxText = document.getElementById("resultTax");
 var resultSocial_Security = document.getElementById("resultSocialSecutiry");
 
-
-
 var calculateButtonTaX = document.getElementById("taxButton");
 var inputIncome = document.getElementById("inputIncomeForTaxes");
 
@@ -42,7 +40,21 @@ var inputIncome = document.getElementById("inputIncomeForTaxes");
 var periodSelect = document.getElementById("period");
 periodSelect.addEventListener("change", changeValues);
 function changeValues(){    
+        firstBracket_treshold = [6450, 77400];                
+        secondBracket_treshold = [9240, 110880]; 
+        thirdBracket_treshold = [14840, 178080]; 
+        fourthBracket_treshold = [20620, 247440];
+        fifthBracket_treshold = [42910, 514920];
+        sixthBracket_treshold = [55270, 663240];
+
+        firstBracket_mount = [6450, 77400];
+        secondBracket_mount =  [2790, 33480];
+        thirdBracket_mount =  [5600, 67200];
+        fourthBracket_mount =  [5780, 69360];
+        fifthBracket_mount =  [22290, 267480];
+        sixthBracket_mount =  [12360, 148320];
         if(periodSelect.value == "monthly"){
+                console.log(periodSelect.value);
                 firstBracket_mount = firstBracket_mount[0];
                 secondBracket_mount = secondBracket_mount[0];
                 thirdBracket_mount = thirdBracket_mount[0];
@@ -57,9 +69,9 @@ function changeValues(){
                 fifthBracket_treshold = fifthBracket_treshold[0];
                 sixthBracket_treshold = sixthBracket_treshold[0];
                 
-                
         }       
-        else if(periodSelect.value == "annual"){
+        else if(periodSelect.value == "annual"){ 
+                console.log(periodSelect.value);
                 firstBracket_mount = firstBracket_mount[1];
                 secondBracket_mount = secondBracket_mount[1];
                 thirdBracket_mount = thirdBracket_mount[1];
@@ -73,7 +85,6 @@ function changeValues(){
                 fourthBracket_treshold = fourthBracket_treshold[1];
                 fifthBracket_treshold = fifthBracket_treshold[1];
                 sixthBracket_treshold = sixthBracket_treshold[1];
-                
         }
         
         firstBracket = firstBracket_mount * firstBracketRate;
@@ -82,9 +93,6 @@ function changeValues(){
         fourthBracket = fourthBracket_mount * fourthBracketRate;
         fifthBracket = fifthBracket_mount * fifthBracketRate;
         sixthBracket = sixthBracket_mount * sixthBracketRate;
-        
-        console.log(periodSelect.value);
-        
 }
                 
 
@@ -102,6 +110,7 @@ function clickByEnter(e){
 
 //FUNCTION FOR THE TAX CALCULATOR
 function calculateTax(){
+        console.log("click");
         var incomeValue = inputIncome.value;
         if(periodSelect.value == "choose"){
                 alert("choose aperiod first");
@@ -109,8 +118,8 @@ function calculateTax(){
         }
         switch(true){
                 case incomeValue == "":
-                        alert("Value must be filled");            
-                        break;
+                        alert("Value must be filled");  
+                        return;          
                 case incomeValue >= 0 && incomeValue <= firstBracket_mount:
                         taxValue = incomeValue * firstBracketRate;       
                         break;
@@ -141,14 +150,14 @@ function calculateTax(){
                 default:
                         resultTaxText.innerText = "Invalid Value";
                         return;
-        }
-                   
+        }     
                 taxValue = (taxValue.toFixed(1));
                 resultTaxText.innerText = "Your taxes to pay are " + taxValue + " ILS";
                 console.log(taxValue);
-                
-
 }
+
+
+
 
 
 
