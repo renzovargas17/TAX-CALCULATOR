@@ -93,8 +93,8 @@ main .title_presentation-container{
 .title_presentation-container p{
     width: 90%;
     font-size: 1.3rem;
-    position: absolute; 
-    top: 21rem;
+    margin-top: 15rem;
+    margin-bottom: 1rem;
     color: gray;
     font-weight: bold
 
