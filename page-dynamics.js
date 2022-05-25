@@ -1,6 +1,6 @@
 
 
-//TAX VALUES
+//VALUES
 var firstBracketRate;
 var secondBracketRate;
 var thirdBracketRate;
@@ -38,30 +38,33 @@ var resultSocial_Security = document.getElementById("resultSocialSecutiry");
 var calculateButtonTaX = document.getElementById("taxButton");
 var inputIncome = document.getElementById("inputIncomeForTaxes");
 
+//EVENT LISTENER FOR THE TWO FUNCTIONS
 inputIncome.addEventListener("keyup", clickByEnter);
 calculateButtonTaX.addEventListener("click", calculateALL);
-       
+
+//EVENT LISTENER FOR PERIOD CHANGE       
 var periodSelect = document.getElementById("period");
 periodSelect.addEventListener("change", changeAllValues);
 
+// CLICK ON ENTER EVENT FUNCIOTN
 function clickByEnter(e){
         e.preventDefault();
         if(e.keyCode == 13){
                 calculateButtonTaX.click();
         }
 }
-
+//INICIALIZE BOTH FUNCTIONS
 function changeAllValues(){
         changeValues_Taxes();
         changeValues_SocialSecurity();
 }
-
+//INICIALIZE BOTH FUNCTIONS
 function calculateALL(){
         calculateTax();
         calculateSocial();
 }
 
-
+//CHANGE VALUES (ANNUAL/MONTHLY) FOR calculateTax()
 function changeValues_Taxes(){
         firstBracketRate = 0.1;
         secondBracketRate = 0.14;
@@ -122,6 +125,8 @@ function changeValues_Taxes(){
         fifthBracket = fifthBracket_mount * fifthBracketRate;
         sixthBracket = sixthBracket_mount * sixthBracketRate;
 }
+
+//CHANGE VALUES (ANNUAL/MONTHLY) FOR calculateSocial()
 function changeValues_SocialSecurity(){
         firstBracketRate = 0.0597;
         secondBrafirstBracketRate = 0.1783;
@@ -147,6 +152,8 @@ function changeValues_SocialSecurity(){
         
 
 }
+
+//CALCULATE INCOME TAX
 function calculateTax(){
         
         changeValues_Taxes();
@@ -157,7 +164,7 @@ function calculateTax(){
         }
         switch(true){
                 case incomeValue == "":
-                        alert("Value must be filled");  
+                        resultTaxText.innerText = "Value must be filled";  
                         return;          
                 case incomeValue >= 0 && incomeValue <= firstBracket_mount:
                         taxValue = incomeValue * firstBracketRate;       
@@ -191,13 +198,22 @@ function calculateTax(){
                         return;
         }     
                 taxValue = (taxValue.toFixed(1));
-                resultTaxText.innerText = "Your taxes to pay are " + taxValue + " ILS";
+                resultTaxText.innerText = taxValue + " ILS";
                 console.log(taxValue);
 }
+//CALCULATE SOCIAL SECURITY TAX
 function calculateSocial(){
         changeValues_SocialSecurity();
         incomeValue = inputIncome.value;
+        if(periodSelect.value == "choose"){
+                resultSocial_Security.innerText = "";
+                return;  
+        }
+
         switch(true){
+                case incomeValue == "":
+                        resultSocial_Security.innerText = "";
+                        break;
                 case incomeValue <= firstBracket_treshold:
                         socialValue = incomeValue * firstBracketRate;
                         break;
@@ -214,7 +230,7 @@ function calculateSocial(){
         }
         
         socialValue = (socialValue.toFixed(1));
-        resultSocial_Security.innerText = "Your Social taxes to pay are " + socialValue + " ILS";
+        resultSocial_Security.innerText = socialValue + " ILS";
         console.log(socialValue);
 }
 

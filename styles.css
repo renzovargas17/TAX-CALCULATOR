@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+header{
+    display: flex;
+    width: 100%;
+    height: 3.5rem;
+    min-width: 32rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #e3b155;
+    
+}
+
+header p{
+    font-size: 1rem;
+    min-width: 9rem;
+    color: azure;
+    text-decoration: solid;
+    font-weight: 700;
+}
+header .languages_list{
+
+    width: 35%;
+    min-width: 11rem;
+}
+header .languages_list ul{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+header .languages_list a{
+    text-decoration: none;
+}
+
+main{
+    width: 100%;
+    height: 100vh;
+    min-width: 32rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:beige;
+}
+
+main .title_presentation-container{
+    width: 100%;
+    height: 25rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(./assets/coffee_1.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 2rem;
+    
+
+    
+    
+    
+}
+
+.income-tax-main--container{
+    width: 80%;
+    height: auto;
+    display: flex;
+    margin-bottom: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    background-color: #84b09b;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16 );
+    
+    
+    
+}
+
+.title_presentation-container h1{
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.title_presentation-container p{
+    width: 90%;
+    font-size: 1.3rem;
+    position: absolute; 
+    top: 21rem;
+    color: gray;
+    font-weight: bold
+
+}
+
+.form-container{
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    
+}
+.form-container .label{
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+.form-container .values-box{
+    font-size: 1.6rem;
+    margin-bottom: 0.7rem;
+}
+.button{
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+.result-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.result-container .result-text{
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.result-container .result-container-box{
+    width: 15rem;
+    height: 2.5rem;
+    margin-bottom: 2rem;
+    background-color: white;
+    border: solid black;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+
+

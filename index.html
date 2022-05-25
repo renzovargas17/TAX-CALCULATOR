@@ -9,33 +9,44 @@
 </head>
 <body>
     <header>
-        <p>TAX-CALCULATOR</p>
-        <nav>
+        <p>TAX CALCULATOR</p>
+        <nav class="languages_list">
             <ul>
                 <li><a href="">English</a></li>
-                <li><a href="">Hebrew</a></li>
-                <li><a href="">Spanish</a></li>
+                <li><a href="">עברית</a></li>
+                <li><a href="">Espanol</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Welcome to your tax calculator!</h1>    
-        <p>Here you can find out what is your income after taxes.</p>
-        <section class="income-tax-container">
-            <form onsubmit="return false">
-                <label for="period">Annual or Monthly Tax?</label>
-                <select id="period">
+        <div class="title_presentation-container">
+            <h1>Welcome to your tax calculator!</h1>    
+            <p>Here you can calculate what your Income Taxes and National Insurance contributions are. </p>
+        </div>
+        <section class="income-tax-main--container">
+            <form onsubmit="return false" class="form-container">
+                <label for="period" class="label">Annual or Monthly Tax?</label>
+                <select id="period" class="values-box">
                     <option value="choose" disabled selected hidden selected="selected">Choose a Period</option>
                     <option value="annual">Annual</option>
                     <option value="monthly">Monthly</option>
                 </select>
-               <label for="inputIncomeForTaxes">Type your income </label>
-               <input type="" id="inputIncomeForTaxes">
-               <button type="button" id="taxButton">Calculate yout taxes</button>
+               <label for="inputIncomeForTaxes" class="label">Type your income </label>
+               <input type="" id="inputIncomeForTaxes" class="values-box">
             </form>
-               <p id="resultTax"></p>
-               <p id="resultSocialSecutiry"></p>
         </section>
+        <button type="button" id="taxButton" class="button">Calculate yout taxes</button>
+        <div class="result-container">
+            <p class="result-text">Your Income Taxe payment is :</p>
+            <div  class="result-container-box">
+                <p id="resultTax"></p>
+            </div>
+            <p class="result-text">Your National Insurance contribution is :</p>
+            <div class="result-container-box">
+                <p id="resultSocialSecutiry" ></p>
+            </div>
+        </div>
+
     </main>
     <script src="./page-dynamics.js"></script>
 </body>
