@@ -1,6 +1,6 @@
 
 
-//VALUES
+/*//VALUES
 var firstBracketRate;
 var secondBracketRate;
 var thirdBracketRate;
@@ -232,11 +232,45 @@ function calculateSocial(){
         socialValue = (socialValue.toFixed(1));
         resultSocial_Security.innerText = socialValue + " ILS";
         console.log(socialValue);
+}*/
+
+
+
+
+
+
+//INCOME TAX VALUES
+var incomeTax_Rates = [0.1, 0.14, 0.2, 0.31, 0.35, 0.47, 0.5];
+var incomeTax_MonthlyBrackets = [6450, 2790, 5600, 5780, 22290, 12360];
+var taxesBracketsNumber = 6
+// var incomeTax_AnnualBrackets = [77400, 33480, 67200, 69360, 267480, 148320];
+function calculateincomeTax(income){
+        var totalTax = 0;
+        var differenceFormBracket;
+        for(var i = 0; i < taxesBracketsNumber; i++){
+                differenceFormBracket = income - incomeTax_MonthlyBrackets[i]
+                if(differenceFormBracket <= 0){
+                 totalTax += income * incomeTax_Rates[i];
+                 break;
+                }
+                totalTax += (incomeTax_MonthlyBrackets[i] * incomeTax_Rates[i]);
+                income = differenceFormBracket; 
+        }
+        return totalTax;
 }
 
 
 
+//NACIONAL ENSUREMENT VALUES
+firstBracketRate = 0.0597;
+secondBrafirstBracketRate = 0.1783;
+firstBracket_treshold = [6331, 75972];
+secondBracket_treshold = [45075, 540900];
+firstBracket_mount = [6331, 75972];
+secondBracket_mount = [38744, 464928];
 
+
+calculateincomeTax(7000)
 
 
 
