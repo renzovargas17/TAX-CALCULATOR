@@ -164,7 +164,7 @@ function calculateTax(){
         }
         switch(true){
                 case incomeValue == "":
-                        resultTaxText.innerText = "Value must be filled";  
+                        alert("Value must be filled");  
                         return;          
                 case incomeValue >= 0 && incomeValue <= firstBracket_mount:
                         taxValue = incomeValue * firstBracketRate;       
@@ -194,7 +194,7 @@ function calculateTax(){
                          taxValue = firstBracket + secondBracket + thirdBracket + fourthBracket + fifthBracket + sixthBracket + (bracketDifference * seventhBracketRate);
                         break;
                 default:
-                        resultTaxText.innerText = "Invalid Value";
+                        alert("Invalid Value");
                         return;
         }     
                 taxValue = (taxValue.toFixed(1));
@@ -213,8 +213,8 @@ function calculateSocial(){
         switch(true){
                 case incomeValue == "":
                         resultSocial_Security.innerText = "";
-                        break;
-                case incomeValue <= firstBracket_treshold:
+                        return;
+                case incomeValue >= 0 && incomeValue <= firstBracket_treshold:
                         socialValue = incomeValue * firstBracketRate;
                         break;
                 case incomeValue > firstBracket_treshold && incomeValue <= secondBracket_treshold:
@@ -225,7 +225,7 @@ function calculateSocial(){
                         socialValue = firstBracket + secondBracket;
                         break;
                 default:
-                        resultSocial_Security.innerText = "Invalid Value";
+                        resultSocial_Security.innerText = "";
                         return;
         }
         
